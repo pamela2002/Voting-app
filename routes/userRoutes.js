@@ -61,7 +61,7 @@ router.post('/login', async (req, res) => {
 // Profile route
 router.get('/profile', jwtAuthMiddleware, async (req, res) => {
     try {
-        const userData = req.user;
+        const userData = req.user.userData;
         console.log("User Data: ", userData);
 
         const userId = userData.id;
@@ -79,7 +79,7 @@ router.get('/profile', jwtAuthMiddleware, async (req, res) => {
 
 router.put('/profile/password', async (req, res) => {
     try {
-        const userId = req.user.id; // Extract the id from the token
+        const userId = req.user.userData.id; // Extract the id from the token
         const { currentPassword, newPassword } = req.body; // Extract current and new password from req body
 
     // Find the user by user id
